@@ -25,7 +25,7 @@ func Convert(s string) string {
 	var code int
 	 
 
-	for _, rune := range []rune(s) {
+	for _, rune := range s {
 		str = string(rune)
 		if hzRegexp.MatchString(str) {//chinese
 			
