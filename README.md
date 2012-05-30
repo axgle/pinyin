@@ -16,7 +16,7 @@ example
 	 "github.com/axgle/pinyin"
 	)
 	func main() {	 
-	  println(pinyin.Convert("hello,ÊÀ½ç!"))
+	  println(pinyin.Convert("hello,ä¸–ç•Œ!"))
 	}
 
 
