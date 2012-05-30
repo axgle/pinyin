@@ -5,11 +5,11 @@ import (
 	"regexp"
 )
 
+var pyValue_length = len(pyValue)
 var hzRegexp = regexp.MustCompile("^[\u4e00-\u9fa5]$")
 
 var enc = mahonia.NewEncoder("gbk")
-
-func utf8ToGBK(s string) string {
+func UTF8ToGBK(s string) string {
 	return enc.ConvertString(s)
 }
 
@@ -17,35 +17,43 @@ func utf8ToGBK(s string) string {
 func Convert(s string) string {
 	pyString := ""
 	var str string
-	var chrAsc int
-	var i1, i2 int
+	var code int
+	 
 
 	for _, rune := range []rune(s) {
 		str = string(rune)
-		if hzRegexp.MatchString(str) {
-			gbkString := utf8ToGBK(str)
-
-			i1 = int(gbkString[0])
-			i2 = int(gbkString[1])
-			chrAsc = i1*256 + i2 - 65536
-			if chrAsc > 0 && chrAsc < 160 {
+		if hzRegexp.MatchString(str) {//chinese
+			
+			code=Code(str)
+			
+			if code > 0 && code < 160 {
 				pyString += str
 			} else {
-				if v, ok := tableMap[chrAsc]; ok {
+				if v, ok := tableMap[code]; ok {//map by table
 					pyString += v
 				} else {
-					for i := (len(pyValue) - 1); i >= 0; i-- {
+					for i := (pyValue_length - 1); i >= 0; i-- {
 
-						if pyValue[i] <= int(chrAsc) {
+						if pyValue[i] <= code {
 							pyString += pyName[i]
 							break
 						}
 					}
 				}
 			}
-		} else {
+		} else {//other
 			pyString += str
 		}
 	}
 	return pyString
+}
+
+//get chinese pinyin number code
+//param s must be chinese character with utf8 encoding
+func Code(s string) int{
+	gbkString := UTF8ToGBK(s)			
+	var i1,i2 int
+	i1 = int(gbkString[0])
+	i2 = int(gbkString[1])
+	return i1*256 + i2 - 65536
 }

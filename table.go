@@ -1,5 +1,6 @@
 package pinyin
 
+//code->pinyin mapping table
 var tableMap = map[int]string{
 	-7995: "En",
 	-9254: "Zhen",
