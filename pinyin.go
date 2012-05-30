@@ -3,8 +3,12 @@ import (
 	"github.com/axgle/mahonia"
 	"regexp" 
 )
+var hzRegexp = regexp.MustCompile("^[\u4e00-\u9fa5]$")
+
 var enc = mahonia.NewEncoder("gbk")
-var hzRegexp = regexp.MustCompile("^[\u4e00-\u9fa5]$")	
+func utf8ToGBK(s string) string{   
+   return enc.ConvertString(s)
+}	
 
 // convert chinese to pinyin
 func Convert(s string) string {
@@ -16,7 +20,7 @@ func Convert(s string) string {
 	for _, rune := range []rune(s) {
 	    str = string(rune)
 		if  hzRegexp.MatchString(str) {
-		gbkString  := enc.ConvertString(str)
+		gbkString  := utf8ToGBK(str)
  
 			i1 = int(gbkString[0])
 			i2 = int(gbkString[1])
