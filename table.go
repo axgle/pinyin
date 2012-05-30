@@ -2,10 +2,10 @@ package pinyin
 
 //code->pinyin mapping table
 var tableMap = map[int]string{
-	-7995: "En",//嗯
-	-9254: "Zhen",//圳
-	-30747: "Jiong",//囧
-	-31796: "Tian",//兲
+	-7995: "En",
+	-9254: "Zhen",
+	-30747: "Jiong",
+	-31796: "Tian",
 }
 
 var pyValue = []int{
