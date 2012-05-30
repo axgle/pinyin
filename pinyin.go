@@ -8,10 +8,22 @@ import (
 var pyValue_length = len(pyValue)
 var hzRegexp = regexp.MustCompile("^[\u4e00-\u9fa5]$")
 
+//define func UTF8ToGBK() by using mahonia package
 var enc = mahonia.NewEncoder("gbk")
 func UTF8ToGBK(s string) string {
 	return enc.ConvertString(s)
 }
+
+//get chinese pinyin number code
+//param s must be chinese character with utf8 encoding
+func Code(s string) int{
+	gbkString := UTF8ToGBK(s)			
+	var i1,i2 int
+	i1 = int(gbkString[0])
+	i2 = int(gbkString[1])
+	return i1*256 + i2 - 65536
+}
+
 
 // convert chinese to pinyin
 func Convert(s string) string {
@@ -48,12 +60,3 @@ func Convert(s string) string {
 	return pyString
 }
 
-//get chinese pinyin number code
-//param s must be chinese character with utf8 encoding
-func Code(s string) int{
-	gbkString := UTF8ToGBK(s)			
-	var i1,i2 int
-	i1 = int(gbkString[0])
-	i2 = int(gbkString[1])
-	return i1*256 + i2 - 65536
-}
