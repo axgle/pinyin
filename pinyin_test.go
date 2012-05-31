@@ -6,13 +6,11 @@ import (
 
 var pinyinTests = map[string]string{
 	"hello,世界!": "hello,ShiJie!",
-	"囧":         "Jiong",
-	"中国":        "ZhongGuo",
-	"中a国":       "ZhongaGuo",
-	"中a1国":      "Zhonga1Guo",
-	"a中a1国1":    "aZhonga1Guo1",
-	"兲朝":        "TianChao",
-	"和谐":        "HeXie",
+	"中文":        "ZhongWen",
+	"汉字":        "HanZi",
+	"拼音":        "PinYin",
+	"简体字":       "JianTiZi",
+	
 }
 
 func TestConvert(t *testing.T) {

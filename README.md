@@ -1,7 +1,7 @@
 pinyin
 ======
 
-convert chinese to pinyin in golang
+convert Simplified Chinese to pinyin in golang
 
 install
 --------
