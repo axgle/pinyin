@@ -1,11 +1,27 @@
 package pinyin
 
 //code->pinyin mapping table
+/*
+By github.com/leonzhu1981
+Add following key,value for last version: 204-03-08
+str:莞, code:-8776
+str:濮, code:-6745
+str:泸, code:-7182
+str:漯, code:-6928
+str:亳, code:-9743
+str:儋, code:-9767
+*/
 var tableMap = map[int]string{
-	-7995: "En",
-	-9254: "Zhen",
+	-7995:  "En",
+	-9254:  "Zhen",
 	-30747: "Jiong",
 	-31796: "Tian",
+	-8776:  "Wan",
+	-6745:  "Pu",
+	-7182:  "Lu",
+	-6928:  "Luo",
+	-9743:  "Bo",
+	-9767:  "Dan",
 }
 
 var pyValue = []int{
