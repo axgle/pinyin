@@ -27,3 +27,7 @@ BSD
 ## Author
 
 * axgle
+
+donate
+-------
+https://github.com/axgle/mahonia/wiki/Donate
